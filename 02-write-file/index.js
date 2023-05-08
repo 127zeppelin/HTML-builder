@@ -3,12 +3,14 @@ const path = require('path');
 const filePath = path.join(__dirname, 'text.txt');
 
 
-if (fs.existsSync(filePath)) {
-  console.log('Файл уже существует');
-} else {
-  console.log('Файл не существует, создаем новый файл text.txt');
-  fs.writeFileSync(filePath, '');
-}
+fs.access(filePath, fs.constants.F_OK, (err) => {
+  if (!err) {
+    console.log('Файл уже существует');
+  } else {
+    console.log('Файл не существует, создаем новый файл text.txt');
+    fs.writeFileSync(filePath, '');
+  }
+});
 
 process.on('SIGINT', () => {
   stdout.write('Удачи в изучении Node.js!');
