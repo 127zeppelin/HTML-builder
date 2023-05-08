@@ -8,7 +8,10 @@ fs.access(filePath, fs.constants.F_OK, (err) => {
     console.log('Файл уже существует');
   } else {
     console.log('Файл не существует, создаем новый файл text.txt');
-    fs.writeFileSync(filePath, '');
+    fs.writeFile(filePath, '', (err) => {
+      if (err) throw err;
+      console.log('Файл успешно создан!');
+    });
   }
 });
 
