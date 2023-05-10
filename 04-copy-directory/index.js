@@ -51,6 +51,5 @@ fs.access(dirPath, fs.constants.F_OK, (err) => {
       });
     });
   }
- 
 });
 
